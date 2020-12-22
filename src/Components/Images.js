@@ -13,6 +13,9 @@ const Image = styled.img`
   cursor: pointer;
   object-fit: cover;
   margin-right: 1rem;
+  &.active {
+    border: 2px solid #3192b0;
+  }
 `;
 
 const AddImage = styled.div`
@@ -37,11 +40,19 @@ const AddImage = styled.div`
   }
 `;
 
-const Images = ({ images, onAddImage, onChangeThumb }) => {
+const Images = ({ images, onAddImage, onChangeThumb, index }) => {
   return (
     <Container>
       {images &&
-        images.map((img, idx) => <Image key={idx} src={img} onClick={() => onChangeThumb(img)} />)}
+        images.map((img, idx) => (
+          <Image
+            key={idx}
+            data-index={idx}
+            className={+index === idx && "active"}
+            src={img}
+            onClick={onChangeThumb}
+          />
+        ))}
       <AddImage>
         <input type="file" onChange={onAddImage} />
         Add image

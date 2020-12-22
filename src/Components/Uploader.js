@@ -14,7 +14,10 @@ const EThumbNail = styled(ThumbNail)`
 `;
 
 const Uploader = () => {
-  const [thumb, setThumb] = useState("");
+  const [thumb, setThumb] = useState({
+    index: 0,
+    src: "",
+  });
   const [images, setImages] = useState([]);
   const [isDrag, setIsdrag] = useState(false);
   const onAddImage = (event) => {
@@ -32,8 +35,10 @@ const Uploader = () => {
     }
   };
 
-  const onChangeThumb = (src) => {
-    setThumb(src);
+  const onChangeThumb = (e) => {
+    const src = e.target.src;
+    const index = e.target.getAttribute("data-index");
+    setThumb({ index, src });
   };
 
   const onDragOver = (e) => {
@@ -79,8 +84,13 @@ const Uploader = () => {
       onDrop={onDrop}
     >
       {isDrag && <IsDrag />}
-      <EThumbNail thumb={thumb} />
-      <Images images={images} onAddImage={onAddImage} onChangeThumb={onChangeThumb} />
+      <EThumbNail thumb={thumb.src} />
+      <Images
+        images={images}
+        index={thumb.index}
+        onAddImage={onAddImage}
+        onChangeThumb={onChangeThumb}
+      />
     </Container>
   );
 };
