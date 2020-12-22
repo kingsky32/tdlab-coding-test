@@ -48,7 +48,7 @@ const Images = ({ images, onAddImage, onChangeThumb, index }) => {
           <Image
             key={idx}
             data-index={idx}
-            className={+index === idx && "active"}
+            className={parseInt(index) === idx && "active"}
             src={img}
             onClick={onChangeThumb}
           />

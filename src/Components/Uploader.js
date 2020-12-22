@@ -15,7 +15,7 @@ const EThumbNail = styled(ThumbNail)`
 
 const Uploader = () => {
   const [thumb, setThumb] = useState({
-    index: 0,
+    index: null,
     src: "",
   });
   const [images, setImages] = useState([]);
